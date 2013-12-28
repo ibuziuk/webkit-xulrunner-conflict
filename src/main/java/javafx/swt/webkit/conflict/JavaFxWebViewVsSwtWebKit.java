@@ -1,4 +1,4 @@
-package javafx.xulrunner.conflict;
+package javafx.swt.webkit.conflict;
 
 import javafx.JavaFxBrowser;
 
@@ -13,19 +13,19 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
 
-public class JavaFxWebViewVsXulrunner {
+public class JavaFxWebViewVsSwtWebKit {
 	public static void main(String[] args) {
 		Display display = new Display();
 		final Shell shell = new Shell(display);
 		final StackLayout stackLayout = new StackLayout();
 		shell.setLayout(stackLayout);
-		shell.setText("JavaFx WebView / XULRUNNER Conflict ");
+		shell.setText("JavaFx WebView / SWT WebKit ");
 
 		final JavaFxBrowser javaFxBrowser = new JavaFxBrowser(shell);
 
-		final Browser xulrunnerBrowser;
+		final Browser swtWebKitBrowser;
 		try {
-			xulrunnerBrowser = new Browser(shell, SWT.MOZILLA);
+			swtWebKitBrowser = new Browser(shell, SWT.WEBKIT);
 		} catch (SWTError e) {
 			System.out.println("Could not instantiate Browser: " + e.getMessage());
 			display.dispose();
@@ -43,8 +43,8 @@ public class JavaFxWebViewVsXulrunner {
 		javaFxWebViewItem.setText("Use javaFx WebView");
 		javaFxWebViewItem.setSelection(true);
 
-		MenuItem xulrunnerItem = new MenuItem(submenu, SWT.RADIO);
-		xulrunnerItem.setText("Use Xulrunner");
+		MenuItem swtWebKitItem = new MenuItem(submenu, SWT.RADIO);
+		swtWebKitItem.setText("Use swt WebKit");
 
 		javaFxWebViewItem.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -57,12 +57,12 @@ public class JavaFxWebViewVsXulrunner {
 			}
 		});
 
-		xulrunnerItem.addSelectionListener(new SelectionAdapter() {
+		swtWebKitItem.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent event) {
 				MenuItem item = (MenuItem) event.widget;
 				if (item.getSelection()) {
-					stackLayout.topControl = xulrunnerBrowser;
+					stackLayout.topControl = swtWebKitBrowser;
 					shell.layout();
 				}
 			}
@@ -70,7 +70,7 @@ public class JavaFxWebViewVsXulrunner {
 		
 		stackLayout.topControl = javaFxBrowser;
 		shell.open();
-		xulrunnerBrowser.setUrl("http://en.wikipedia.org/wiki/XULRunner");
+		swtWebKitBrowser.setUrl("http://www.eclipse.org/swt/faq.php");
 		
 		while (!shell.isDisposed()) {
 			if (!display.readAndDispatch())
@@ -78,5 +78,4 @@ public class JavaFxWebViewVsXulrunner {
 		}
 		display.dispose();
 	}
-
 }

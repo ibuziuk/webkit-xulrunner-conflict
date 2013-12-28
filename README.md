@@ -18,4 +18,8 @@ How to test the conflict?
 4. Run XulrunnerVsSwtWebKit.java - on Fedora 18 x64 / Ubuntu 12 x64 after several clicks the app will crash with native error. This is reproduction of SWT WebKit and Xulrunner conflict
 5. Run JavaFxWebViewVsXulrunner.java - the app will not crash. Assuming that, there is no conflict between javaFx WebView and Xulrunner on Linux
 
+--------------------------------------------------
+**JavaFx Webkit vs. SWT.Webkit**
+ - for testing potential conflict add jfxrt.jar to the project and run JavaFxWebViewVsSwtWebKit.java
+
 

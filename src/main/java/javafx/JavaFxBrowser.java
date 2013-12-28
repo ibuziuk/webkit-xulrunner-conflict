@@ -1,4 +1,4 @@
-package javafx.xulrunner.conflict;
+package javafx;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
